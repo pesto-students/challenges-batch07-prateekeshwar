@@ -1,0 +1,25 @@
+# Git Excercise insights
+- Get to know about what is going on under the hood in .git folder and how all the data is saved in 40 digit sha-1 key.
+- The data is stored in key value pair and the basic unit of git functionality is commit. Branch, tag is pointed to commit.
+- Managing large projects without version controlling like git will be very difficult and many developers will work simultaneously on same repo
+- git store data in blob
+- With merge we can merge two brances but we will get merge commit and irregular comit history
+- With git reset we can undo the file to staging area again, command can be git reset -- <file name>
+- With revert we can revert commit back , general command we can use is - git revert <commit id>
+- With rebase we can get our working branch code up to date with the parent branch as simultanoeusly many developers are working on there individual branch and merging code inside the parent branch. The major rebase command are givan below
+        - git rebase <branch name>
+        - git rebase --continue
+        - git rebase --skip
+        - git rebase --abort
+-While developing softwares it is very common use case that in between of ongoing work we have to do some other work on some other branch, so to continue the work from where we left it we have stash command in git
+        - git stash save "<your saved message>" --include-untracked(to include untrack git files)
+        - git stash push (to stash particular file out of several file)
+        - git stash pop (to get all your changes back to your staging and get deleted from stash)
+        - git stash apply (if we want our changes back and also in stash at the same time if we want same changes in multiple branches)
+        - git stash list (to show complete list of stash)
+- With log you can see complete list of your commit, you can give several option like --after, --before etc to filter and see only relevant data from commit that your want to see
+- "echo 'Hello, World!' | git hash-object --stdin" and "echo 'blob 14\0Hello, World!' | openssl sha1" output of these two command are different because they both will calculate hash differently , this is how git ccalculate sha <sha1("blob " + filesize + "\0" + data)>
+- Undestand the tags , and what is difference between Lightweight tag and Annotated tag and in which case we have to use these respective individual tags
+        - git tag <tag name> (to create lightweight tag)
+        - git show <tag name> (to see tag is pointed to which commit)
+        - git tag -l -n3 (to see all tag with metadata)
