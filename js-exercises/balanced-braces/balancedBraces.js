@@ -3,8 +3,7 @@ function balancedBraces(...args) {
     const argString = args[0];
     if (args && typeof (args[0] === 'string')) {
       const bracketArray = [];
-      for (let index = 0; index < argString.length; index += 1) {
-        const char = argString.charAt(index);
+      for (const char of argString) {
         if (char === '{' || char === '}' || char === '[' || char === ']' || char === '(' || char === ')') {
           bracketArray.push(char);
         }
