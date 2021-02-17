@@ -1,15 +1,12 @@
 function duplicateLetters(...args) {
   try {
     if (args) {
-      const ArgStr = args[0];
-      const CountChar = {};
       let maxChar = null;
-      for (let i = 0; i < ArgStr.length; i += 1) {
-        CountChar[ArgStr[i]] = CountChar[ArgStr[i]] ? CountChar[ArgStr[i]] += 1 : 1;
-        if (maxChar === null || CountChar[ArgStr[i]] > CountChar[maxChar]) {
-          maxChar = ArgStr[i];
-        }
-      }
+      const CountChar = {};
+      args[0].split('').forEach((char) => {
+        CountChar[char] = (CountChar[char] || 0) + 1;
+        maxChar = maxChar === null || CountChar[char] > CountChar[maxChar] ? char : maxChar;
+      });
       return CountChar[maxChar] > 1 ? CountChar[maxChar] : false;
     }
     throw new Error('Null argument');
