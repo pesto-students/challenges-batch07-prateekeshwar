@@ -1,5 +1,5 @@
 function getTotalTime(passcode, keypadStr) {
-  if (!/^(?!.*(.).*\1)\d{9}$/.test(keypadStr)) { throw new Error(' 9 keys required'); }
+  if (!/^(?!.*(.).*\1)\d{9}$/.test(keypadStr)) { throw new Error('9 unique integer keys required'); }
   if (!/\d$/.test(passcode)) { throw new Error('only integers are allowed'); }
   let newPasscode = '';
   const newKeyPadStr = '012345678';
