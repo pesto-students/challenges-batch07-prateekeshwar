@@ -12,7 +12,7 @@ function sumFibs(num) {
       const FibboArray = [1, 1];
       for (let i = 2; FibboArray[i - 2] + FibboArray[i - 1] <= num; i += 1) {
         const CurrentFibbo = FibboArray[i - 2] + FibboArray[i - 1];
-        FibboArray.push(FibboArray[i - 2] + FibboArray[i - 1]);
+        FibboArray.push(CurrentFibbo);
         if (CurrentFibbo % 2 !== 0) {
           FibboSum += CurrentFibbo;
         }
@@ -26,14 +26,15 @@ function sumFibs(num) {
 }
 
 function cacheFunction(fn) {
-  const StoreCache = {};
-  return function memoizedFun(num) {
-    if (num in StoreCache) {
-      return StoreCache[num];
+  const StoreCache = new Map();
+  return function memoizedFun(...args) {
+    const key = JSON.stringify(args);
+    if (StoreCache.has(key)) {
+      return StoreCache.get(key);
     }
-    const OddSum = fn(num);
-    StoreCache[num] = OddSum;
-    return OddSum;
+    const result = fn(...args);
+    StoreCache.set(key, result);
+    return result;
   };
 }
 
