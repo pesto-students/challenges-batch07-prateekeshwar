@@ -3,7 +3,7 @@ function abbreviateString(str) {
     if (str && typeof (str) === 'string') {
       const StrArray = str.trim().split(' ');
       if (StrArray.length > 1) {
-        return (`${StrArray[0]} ${StrArray[StrArray.length - 1].charAt(0).toUpperCase()}.`);
+        return (`${StrArray[0]} ${StrArray[StrArray.length - 1][0].toUpperCase()}.`);
       }
       return StrArray[0];
     }
