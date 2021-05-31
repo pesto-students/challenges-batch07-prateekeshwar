@@ -1,7 +1,12 @@
 const sumEvenArgs = (...args) => {
   try {
     if (args) {
-      const sumEvenNum = args.filter(num => num % 2 === 0).reduce((sum, num) => sum + num, 0);
+      const sumEvenNum = args.reduce((sum, num) => {
+        if (num % 2 === 0) {
+          return sum + num;
+        }
+        return sum;
+      }, 0);
       return sumEvenNum;
     }
     throw new Error('Function argument is null');
