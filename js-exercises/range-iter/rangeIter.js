@@ -7,15 +7,24 @@ function rangeIter(lb, ub) {
     return [];
   } else if (lb === ub) {
     return [lb];
-  } else if (lb < ub) {
-    const iterableArr = [];
-    for (let num = lb; num <= ub; num += 1) {
-      iterableArr.push(num);
-    }
-    return iterableArr;
-  } else {
-    throw new Error('Invalid parameter');
   }
+  const objIter = {
+    [Symbol.iterator]() {
+      return {
+        current: lb,
+        last: ub,
+        next() {
+          if (this.current <= this.last) {
+            const value = this.current;
+            this.current += 1;
+            return { done: false, value };
+          }
+          return { done: true };
+        },
+      };
+    },
+  };
+  return objIter;
 }
 
 export { rangeIter };
